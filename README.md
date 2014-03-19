@@ -8,24 +8,24 @@ it directly to your own Django Models and Forms
 Usage
 -----
 
-To use a map field, simply import it and set its `fieldnames` when creating the
+To use a map field, simply import it and set its `field_names` when creating the
 field.
 
 ```python
 from django import forms
 
-from mapped_fields import forms as map
+from mapped_fields import forms as maps
 
 
 class ContactCsv(forms.Form):
     """Import a Contact from a CSV File.
     """
-    first_name = map.Charfield(
-        max_length=50, fieldnames=('FirstName', 'Forename'))
-    last_name = map.Charfield(
-        max_length=50, fieldnames=('LastName', 'Surname'))
-    phone_number = map.CharField(
-        max_length=30, fieldnames=('Telephone', 'Mobile'))
+    first_name = maps.Charfield(
+        max_length=50, field_names=('FirstName', 'Forename'))
+    last_name = maps.Charfield(
+        max_length=50, field_names=('LastName', 'Surname'))
+    phone_number = maps.CharField(
+        max_length=30, field_names=('Telephone', 'Mobile'))
 
 
 def map_from_csv():
@@ -49,4 +49,19 @@ def map_from_csv():
 
     invalid_form = ContactCsv(**csv_files[1])
     invalid_form.is_valid() == False # Legal Surname is not in the mapped fields
+```
+
+Testing
+-------
+
+To test, install the requirements inside your virtualenv then run test
+inside test_project:
+
+```
+virtualenv venv
+. venv/bin/activate
+pip install -r requirements.txt
+
+cd test_project
+./manage.py test
 ```
