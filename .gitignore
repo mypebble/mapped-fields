@@ -3,3 +3,8 @@
 *.pyc
 local_settings.py
 .project
+.*.un~
+venv/*
+build/*
+dist/*
+*.egg-info
