@@ -51,6 +51,28 @@ def map_from_csv():
     invalid_form.is_valid() == False # Legal Surname is not in the mapped fields
 ```
 
+
+Fields
+------
+
+The Mapped Fields plugin works by extending existing django fields. The
+currently supported fields are:
+
+- `mapped_fields.forms.BooleanField`
+- `mapped_fields.forms.CharField`
+- `mapped_fields.forms.DateField`
+- `mapped_fields.forms.DateTimeField`
+- `mapped_fields.forms.DecimalField`
+- `mapped_fields.forms.EmailField`
+- `mapped_fields.forms.FloatField`
+- `mapped_fields.forms.IntegerField`
+- `mapped_fields.forms.SlugField`
+- `mapped_fields.forms.URLField`
+
+
+All fields work as in Django, but take a mandatory extra argument `field_names`
+
+
 Testing
 -------
 
