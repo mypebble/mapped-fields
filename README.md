@@ -41,13 +41,13 @@ def map_from_csv():
         },
     ]
 
-    valid_form = ContactCsv(**csv_files[0])
+    valid_form = ContactCsv(data=csv_files[0])
     valid_form.is_valid() == True
     valid_form.cleaned_data['first_name'] == 'Anne'
     valid_form.cleaned_data['last_name'] == 'Other'
     valid_form.cleaned_data['phone_number'] == '555-1234'
 
-    invalid_form = ContactCsv(**csv_files[1])
+    invalid_form = ContactCsv(data=csv_files[1])
     invalid_form.is_valid() == False # Legal Surname is not in the mapped fields
 ```
 

@@ -4,3 +4,6 @@
 local_settings.py
 .*.un~
 venv/*
+build/*
+dist/*
+*.egg-info
