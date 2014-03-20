@@ -1,6 +1,5 @@
 from datetime import date
-
-from django.test import TestCase
+from unittest import TestCase
 
 from test_project.test_app import forms
 

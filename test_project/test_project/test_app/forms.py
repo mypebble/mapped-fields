@@ -1,16 +1,16 @@
 from django import forms
 
-from mapped_fields import forms as maps
+from mapped_fields import fields
 
 
 class ContactForm(forms.Form):
     """A simple contact form that we can use to test a range of mapping.
     """
-    first_name = maps.CharField(
+    first_name = fields.CharField(
         max_length=50, field_names=('FirstName', 'First Name'))
-    last_name = maps.CharField(
+    last_name = fields.CharField(
         max_length=50, field_names=('LastName', 'Last Name'))
 
-    date_of_birth = maps.DateField(field_names=('DOB', 'DateOfBirth'))
+    date_of_birth = fields.DateField(field_names=('DOB', 'DateOfBirth'))
 
-    number_of_tshirts = maps.IntegerField(field_names=('Tshirts', ), default=0)
+    number_of_tshirts = fields.IntegerField(field_names=('Tshirts', ))
