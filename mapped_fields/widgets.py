@@ -1,4 +1,4 @@
-from django.forms.widgets import TextInput, DateInput, NumberInput
+from django.forms import widgets as django_widgets
 
 
 class MappedFieldWidgetMixin(object):
@@ -15,19 +15,25 @@ class MappedFieldWidgetMixin(object):
                     return value
 
 
-class MappedTextInput(MappedFieldWidgetMixin, TextInput):
+class MappedTextInput(
+        MappedFieldWidgetMixin,
+        django_widgets.TextInput):
     """
     """
     pass
 
 
-class MappedDateInput(MappedFieldWidgetMixin, DateInput):
+class MappedDateInput(
+        MappedFieldWidgetMixin,
+        django_widgets.DateInput):
     """
     """
     pass
 
 
-class MappedNumberInput(MappedFieldWidgetMixin, NumberInput):
+class MappedNumberInput(
+        MappedFieldWidgetMixin,
+        django_widgets.NumberInput):
     """
     """
     pass
