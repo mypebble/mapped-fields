@@ -12,7 +12,6 @@ class MappedFieldMixin(object):
         """
         super(MappedFieldMixin, self).__init__(**kwargs)
         self.widget.field_names = field_names
-        print self.widget, field_names
 
 
 class CharField(MappedFieldMixin, forms.CharField):
