@@ -21,13 +21,13 @@ class CharField(MappedFieldMixin, forms.CharField):
     pass
 
 
-class DateField(MappedFieldMixin, forms.CharField):
+class DateField(MappedFieldMixin, forms.DateField):
     """
     """
     pass
 
 
-class IntegerField(MappedFieldMixin, forms.CharField):
+class IntegerField(MappedFieldMixin, forms.IntegerField):
     """
     """
     pass
