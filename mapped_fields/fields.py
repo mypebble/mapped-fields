@@ -1,6 +1,3 @@
-from types import MethodType
-from functools import partial
-
 from django import forms
 
 from mapped_fields.widgets import (MappedTextInput, MappedDateInput,
