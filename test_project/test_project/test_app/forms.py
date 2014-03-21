@@ -26,9 +26,7 @@ class TestForm(forms.Form):
 
     slug = fields.SlugField(field_names=('reference',))
 
-    """
     url = fields.URLField(field_names=('homepage',))
-    """
 
 
 class BooleanTestForm(forms.Form):

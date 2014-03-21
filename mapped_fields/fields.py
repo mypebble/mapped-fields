@@ -55,6 +55,11 @@ class SlugField(MappedFieldMixin, forms.SlugField):
     widget = mapped_widgets.MappedTextInput
 
 
+class URLField(MappedFieldMixin, forms.URLField):
+    """
+    """
+    widget = mapped_widgets.MappedTextInput
+
 class DateField(MappedFieldMixin, forms.DateField):
     """
     """

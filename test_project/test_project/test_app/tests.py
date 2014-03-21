@@ -65,6 +65,7 @@ class MappedFieldTestCase(TestCase):
             'Tshirts': '15',
             'email_address': 'someone@somewhere.com',
             'reference': 'x-y-z',
+            'homepage': 'http://example.com',
         }
 
         form = forms.TestForm(data=contact)
@@ -83,6 +84,7 @@ class MappedFieldTestCase(TestCase):
         self.assertEqual(form.cleaned_data['ratio'], 3.142)
         self.assertEqual(form.cleaned_data['email'], 'someone@somewhere.com')
         self.assertEqual(form.cleaned_data['slug'], 'x-y-z')
+        self.assertEqual(form.cleaned_data['url'], 'http://example.com/')
 
 
     def test_invalid_field(self):
@@ -99,13 +101,14 @@ class MappedFieldTestCase(TestCase):
 
         self.assertFalse(form.is_valid())
 
-        self.assertEqual(len(form.errors), 6)
+        self.assertEqual(len(form.errors), 7)
         self.assertTrue('date_of_birth' in form.errors)
         self.assertTrue('last_contacted' in form.errors)
         self.assertTrue('height' in form.errors)
         self.assertTrue('ratio' in form.errors)
         self.assertTrue('email' in form.errors)
         self.assertTrue('slug' in form.errors)
+        self.assertTrue('url' in form.errors)
 
 
 class MappedBooleanFieldTestCase(TestCase):
