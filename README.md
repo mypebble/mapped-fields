@@ -74,7 +74,8 @@ currently supported fields are:
 - `mapped_fields.fields.URLField`
 
 
-All fields work as in Django, but take a mandatory extra argument `field_names`
+All fields work as in Django, but take a mandatory extra argument `field_names` -- a list or tuple
+of field names to map from the source data into the field.
 
 
 Testing
