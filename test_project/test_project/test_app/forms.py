@@ -18,10 +18,8 @@ class TestForm(forms.Form):
 
     height = fields.DecimalField(field_names=('height_m',))
 
-    """
     ratio = fields.FloatField(field_names=('some_ratio',))
 
-    """
     number_of_tshirts = fields.IntegerField(field_names=('Tshirts', ))
     """
 

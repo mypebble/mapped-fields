@@ -61,6 +61,12 @@ class DecimalField(MappedFieldMixin, forms.DecimalField):
     widget = mapped_widgets.MappedNumberInput
 
 
+class FloatField(MappedFieldMixin, forms.FloatField):
+    """
+    """
+    widget = mapped_widgets.MappedNumberInput
+
+
 class IntegerField(MappedFieldMixin, forms.IntegerField):
     """
     """

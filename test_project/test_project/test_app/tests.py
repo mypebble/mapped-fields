@@ -39,6 +39,11 @@ class MappedFieldTestCase(TestCase):
             form.fields['number_of_tshirts'].widget,
             mapped_fields.widgets.MappedNumberInput))
 
+        self.assertTrue(isinstance(
+            form.fields['ratio'].widget,
+            mapped_fields.widgets.MappedNumberInput))
+
+
     def test_valid_contact(self):
         """We can set all the valid fields.
         """
@@ -48,6 +53,7 @@ class MappedFieldTestCase(TestCase):
             'DateOfBirth': '1990-1-11',
             'last_call': '2014-03-21 15:16:17',
             'height_m': '1.73',
+            'some_ratio': '3.142',
             'Tshirts': '15',
         }
 
@@ -64,6 +70,8 @@ class MappedFieldTestCase(TestCase):
             isinstance(form.cleaned_data['last_contacted'], datetime))
         self.assertEqual(form.cleaned_data['height'], Decimal('1.73'))
         self.assertEqual(form.cleaned_data['number_of_tshirts'], 15)
+        self.assertEqual(form.cleaned_data['ratio'], 3.142)
+
 
     def test_invalid_field(self):
         """The mapped fields work the same way as normal Django Fields.
@@ -82,6 +90,7 @@ class MappedFieldTestCase(TestCase):
         self.assertTrue('date_of_birth' in form.errors)
         self.assertTrue('last_contacted' in form.errors)
         self.assertTrue('height' in form.errors)
+        self.assertTrue('ratio' in form.errors)
 
 
 class MappedBooleanFieldTestCase(TestCase):
