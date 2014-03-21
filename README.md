@@ -77,6 +77,10 @@ currently supported fields are:
 All fields work as in Django, but take a mandatory extra argument `field_names` -- a list or tuple
 of field names to map from the source data into the field.
 
+You may encounter problems when using `mapped_fields.fields.NullBooleanField`. This is because
+Django uses a `NullBooleanSelect` widget for this field, whereas our version currently uses
+the `CheckboxInput` widget.
+
 
 Testing
 -------
