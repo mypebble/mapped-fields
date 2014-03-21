@@ -4,9 +4,18 @@ from django.forms import widgets as django_widgets
 
 
 class MappedWidgetMixinBase(object):
-    """Abstract base class only for mixins. Identifies subclassed widgets.
     """
-    pass
+    Abstract base class only for mixins. Identifies subclassed widgets.
+    Defines logic common to all inheriting mixins.
+    """
+    def _get_mapped_field_value(self, data, name):
+        """
+        Traverses the given data looking for a key match in self.field_names.
+        If there's a match, return the value.
+        """
+        for field_name, value in data.iteritems():
+            if field_name in self.field_names:
+                return value
 
 
 class MappedTextInputMixin(MappedWidgetMixinBase):
@@ -15,15 +24,10 @@ class MappedTextInputMixin(MappedWidgetMixinBase):
     Note that most Widgets extend TextInput, only special cases don't.
     """
     def value_from_datadict(self, data, files, name):
-        """
-        An override to do the mapping, by traversing the given data if the
-        field name itself isn't present as a key.
-        If there's a match in self.field_names, return the value.
+        """An override to do the field mapping, if
         """
         if name not in data:
-            for field_name, value in data.iteritems():
-                if field_name in self.field_names:
-                    return value
+            return self._get_mapped_field_value(data, name)
 
 
 class MappedCheckboxInputMixin(MappedWidgetMixinBase):
@@ -32,11 +36,7 @@ class MappedCheckboxInputMixin(MappedWidgetMixinBase):
     def value_from_datadict(self, data, files, name):
         """
         """
-        value = False
-        for field_name, data_value in data.iteritems():
-            if field_name in self.field_names:
-                value = data_value
-                break
+        value = self._get_mapped_field_value(data, name)
 
         # Translate true and false strings to boolean values (from Django).
         values = {'true': True, 'false': False}
