@@ -37,6 +37,7 @@ class MappedFieldTestCase(TestCase):
             'FirstName': 'First',
             'Last Name': 'Last',
             'DateOfBirth': '1990-1-11',
+            'last_call': '2014-03-21 15:16:17',
             'Tshirts': '15',
         }
 
@@ -64,6 +65,7 @@ class MappedFieldTestCase(TestCase):
         self.assertFalse(form.is_valid())
 
         self.assertTrue('date_of_birth' in form.errors)
+        self.assertTrue('last_contacted' in form.errors)
 
 
 class MappedBooleanFieldTestCase(TestCase):

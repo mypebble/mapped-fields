@@ -58,6 +58,12 @@ class MappedDateInput(
     pass
 
 
+class MappedDateTimeInput(
+        MappedTextInputMixin,
+        django_widgets.DateTimeInput):
+    pass
+
+
 class MappedNumberInput(
         MappedTextInputMixin,
         django_widgets.NumberInput):
