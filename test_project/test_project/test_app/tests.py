@@ -61,5 +61,13 @@ class MappedFieldTestCase(TestCase):
 
         form = forms.TestForm(data=contact)
 
+        field_errors = (
+            'is_staff',
+            'date_of_birth',
+        )
+
         self.assertFalse(form.is_valid())
-        self.assertTrue(form.errors['date_of_birth'])
+
+        for field in field_errors:
+            self.assertTrue(field in form.errors,
+                '{} not in errors list'.format(field))
