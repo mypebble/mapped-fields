@@ -16,9 +16,9 @@ class TestForm(forms.Form):
     last_contacted = fields.DateTimeField(
         field_names=('last_contact', 'last_call'))
 
-    """
     height = fields.DecimalField(field_names=('height_m',))
 
+    """
     ratio = fields.FloatField(field_names=('some_ratio',))
 
     """

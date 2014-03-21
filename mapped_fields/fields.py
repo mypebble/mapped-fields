@@ -55,6 +55,12 @@ class DateTimeField(MappedFieldMixin, forms.DateTimeField):
     widget = mapped_widgets.MappedDateTimeInput
 
 
+class DecimalField(MappedFieldMixin, forms.DecimalField):
+    """
+    """
+    widget = mapped_widgets.MappedNumberInput
+
+
 class IntegerField(MappedFieldMixin, forms.IntegerField):
     """
     """
