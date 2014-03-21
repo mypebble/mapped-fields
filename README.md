@@ -23,11 +23,11 @@ from mapped_fields import forms as maps
 class ContactCsv(forms.Form):
     """Import a Contact from a CSV File.
     """
-    first_name = maps.Charfield(
+    first_name = fields.Charfield(
         max_length=50, field_names=('FirstName', 'Forename'))
-    last_name = maps.Charfield(
+    last_name = fields.Charfield(
         max_length=50, field_names=('LastName', 'Surname'))
-    phone_number = maps.CharField(
+    phone_number = fields.CharField(
         max_length=30, field_names=('Telephone', 'Mobile'))
 
 

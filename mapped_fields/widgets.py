@@ -2,11 +2,12 @@ from django.forms import widgets as django_widgets
 
 
 class MappedFieldWidgetMixin(object):
-    """
+    """Mixin to extend each Django Widget subclass with field mapping logic.
     """
     def value_from_datadict(self, data, files, name):
         """
-        Traverse the given data dict, if necessary.
+        An override to do the mapping, by traversing the given data if the
+        field name itself isn't present as a key.
         If there's a match in self.field_names, return the value.
         """
         if name not in data:
