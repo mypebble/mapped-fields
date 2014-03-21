@@ -21,10 +21,10 @@ class TestForm(forms.Form):
     ratio = fields.FloatField(field_names=('some_ratio',))
 
     number_of_tshirts = fields.IntegerField(field_names=('Tshirts', ))
-    """
 
     email = fields.EmailField(field_names=('email_address',))
 
+    """
     slug = fields.SlugField(field_names=('reference',))
 
     url = fields.URLField(field_names=('homepage',))
