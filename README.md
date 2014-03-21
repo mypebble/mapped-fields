@@ -17,7 +17,7 @@ field.
 ```python
 from django import forms
 
-from mapped_fields import forms as maps
+from mapped_fields import fields
 
 
 class ContactCsv(forms.Form):
