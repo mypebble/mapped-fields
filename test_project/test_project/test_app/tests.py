@@ -12,7 +12,7 @@ class MappedFieldTestCase(TestCase):
     def test_widget_inheritance(self):
         """The correct Widget subclasses are used.
         """
-        form = forms.ContactForm()
+        form = forms.TestForm()
 
         self.assertTrue(isinstance(
             form.fields['first_name'].widget,
