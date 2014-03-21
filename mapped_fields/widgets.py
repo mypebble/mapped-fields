@@ -1,8 +1,16 @@
 from django.forms import widgets as django_widgets
 
 
-class MappedFieldWidgetMixin(object):
-    """Mixin to extend each Django Widget subclass with field mapping logic.
+class MappedWidgetMixinBase(object):
+    """Abstract base class only for mixins. Identifies subclassed widgets.
+    """
+    pass
+
+
+class MappedTextInputMixin(MappedWidgetMixinBase):
+    """
+    Mixin to extend TextInput subclasses with field mapping logic.
+    Note that most Widgets extend TextInput, only special cases don't.
     """
     def value_from_datadict(self, data, files, name):
         """
@@ -16,8 +24,14 @@ class MappedFieldWidgetMixin(object):
                     return value
 
 
+class MappedCheckboxInputMixin(MappedWidgetMixinBase):
+    """
+    """
+    pass
+
+
 class MappedTextInput(
-        MappedFieldWidgetMixin,
+        MappedTextInputMixin,
         django_widgets.TextInput):
     """
     """
@@ -25,7 +39,7 @@ class MappedTextInput(
 
 
 class MappedDateInput(
-        MappedFieldWidgetMixin,
+        MappedTextInputMixin,
         django_widgets.DateInput):
     """
     """
@@ -33,7 +47,7 @@ class MappedDateInput(
 
 
 class MappedNumberInput(
-        MappedFieldWidgetMixin,
+        MappedTextInputMixin,
         django_widgets.NumberInput):
     """
     """

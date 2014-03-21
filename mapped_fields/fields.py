@@ -9,14 +9,14 @@ class MappedFieldMixin(object):
     def __init__(self, field_names, **kwargs):
         """
         Override to force the correct widget and set field_names on it,
-        when a widget inheriting MappedFieldWidgetMixin is used.
+        when a widget inheriting MappedWidgetMixinBase is used.
 
         Leaves widget alone if passed in kwargs (widget class must still
         implement logic from mixin in order to work as expected).
         """
         default_override = (
             'widget' not in kwargs and
-            issubclass(self.widget, mapped_widgets.MappedFieldWidgetMixin))
+            issubclass(self.widget, mapped_widgets.MappedWidgetMixinBase))
 
         if default_override:
             kwargs['widget'] = self.widget
