@@ -49,6 +49,12 @@ class EmailField(MappedFieldMixin, forms.EmailField):
     widget = mapped_widgets.MappedTextInput
 
 
+class SlugField(MappedFieldMixin, forms.SlugField):
+    """
+    """
+    widget = mapped_widgets.MappedTextInput
+
+
 class DateField(MappedFieldMixin, forms.DateField):
     """
     """

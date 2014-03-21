@@ -24,9 +24,9 @@ class TestForm(forms.Form):
 
     email = fields.EmailField(field_names=('email_address',))
 
-    """
     slug = fields.SlugField(field_names=('reference',))
 
+    """
     url = fields.URLField(field_names=('homepage',))
     """
 

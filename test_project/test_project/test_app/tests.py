@@ -24,6 +24,14 @@ class MappedFieldTestCase(TestCase):
             mapped_fields.widgets.MappedTextInput))
 
         self.assertTrue(isinstance(
+            form.fields['email'].widget,
+            mapped_fields.widgets.MappedTextInput))
+
+        self.assertTrue(isinstance(
+            form.fields['slug'].widget,
+            mapped_fields.widgets.MappedTextInput))
+
+        self.assertTrue(isinstance(
             form.fields['date_of_birth'].widget,
             mapped_fields.widgets.MappedDateInput))
 
@@ -56,6 +64,7 @@ class MappedFieldTestCase(TestCase):
             'some_ratio': '3.142',
             'Tshirts': '15',
             'email_address': 'someone@somewhere.com',
+            'reference': 'x-y-z',
         }
 
         form = forms.TestForm(data=contact)
@@ -73,6 +82,7 @@ class MappedFieldTestCase(TestCase):
         self.assertEqual(form.cleaned_data['number_of_tshirts'], 15)
         self.assertEqual(form.cleaned_data['ratio'], 3.142)
         self.assertEqual(form.cleaned_data['email'], 'someone@somewhere.com')
+        self.assertEqual(form.cleaned_data['slug'], 'x-y-z')
 
 
     def test_invalid_field(self):
@@ -89,12 +99,13 @@ class MappedFieldTestCase(TestCase):
 
         self.assertFalse(form.is_valid())
 
-        self.assertEqual(len(form.errors), 5)
+        self.assertEqual(len(form.errors), 6)
         self.assertTrue('date_of_birth' in form.errors)
         self.assertTrue('last_contacted' in form.errors)
         self.assertTrue('height' in form.errors)
         self.assertTrue('ratio' in form.errors)
         self.assertTrue('email' in form.errors)
+        self.assertTrue('slug' in form.errors)
 
 
 class MappedBooleanFieldTestCase(TestCase):
