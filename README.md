@@ -61,16 +61,17 @@ Fields
 The Mapped Fields plugin works by extending existing django fields. The
 currently supported fields are:
 
-- `mapped_fields.forms.BooleanField`
-- `mapped_fields.forms.CharField`
-- `mapped_fields.forms.DateField`
-- `mapped_fields.forms.DateTimeField`
-- `mapped_fields.forms.DecimalField`
-- `mapped_fields.forms.EmailField`
-- `mapped_fields.forms.FloatField`
-- `mapped_fields.forms.IntegerField`
-- `mapped_fields.forms.SlugField`
-- `mapped_fields.forms.URLField`
+- `mapped_fields.fields.BooleanField`
+- `mapped_fields.fields.NullBooleanField`
+- `mapped_fields.fields.CharField`
+- `mapped_fields.fields.DateField`
+- `mapped_fields.fields.DateTimeField`
+- `mapped_fields.fields.DecimalField`
+- `mapped_fields.fields.FloatField`
+- `mapped_fields.fields.IntegerField`
+- `mapped_fields.fields.EmailField`
+- `mapped_fields.fields.SlugField`
+- `mapped_fields.fields.URLField`
 
 
 All fields work as in Django, but take a mandatory extra argument `field_names`
