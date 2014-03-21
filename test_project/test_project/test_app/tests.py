@@ -40,7 +40,7 @@ class MappedFieldTestCase(TestCase):
             'Tshirts': '15',
         }
 
-        form = forms.ContactForm(data=contact)
+        form = forms.TestForm(data=contact)
 
         self.assertTrue(form.is_valid())
 
@@ -59,7 +59,7 @@ class MappedFieldTestCase(TestCase):
             'Tshirts': '15',
         }
 
-        form = forms.ContactForm(data=contact)
+        form = forms.TestForm(data=contact)
 
         self.assertFalse(form.is_valid())
         self.assertTrue(form.errors['date_of_birth'])

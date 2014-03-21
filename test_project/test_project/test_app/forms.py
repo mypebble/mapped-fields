@@ -3,8 +3,8 @@ from django import forms
 from mapped_fields import fields
 
 
-class ContactForm(forms.Form):
-    """A simple contact form that we can use to test a range of mapping.
+class TestForm(forms.Form):
+    """A simple form that we can use to test a range of mapping.
     """
     first_name = fields.CharField(
         max_length=50, field_names=('FirstName', 'First Name'))
