@@ -25,6 +25,18 @@ class MappedFieldMixin(object):
         self.widget.field_names = field_names
 
 
+class BooleanField(MappedFieldMixin, forms.BooleanField):
+    """
+    """
+    widget = mapped_widgets.MappedCheckboxInput
+
+
+class NullBooleanField(MappedFieldMixin, forms.NullBooleanField):
+    """
+    """
+    widget = mapped_widgets.MappedCheckboxInput
+
+
 class CharField(MappedFieldMixin, forms.CharField):
     """
     """

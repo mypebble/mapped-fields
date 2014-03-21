@@ -25,30 +25,28 @@ class MappedTextInputMixin(MappedWidgetMixinBase):
 
 
 class MappedCheckboxInputMixin(MappedWidgetMixinBase):
-    """
-    """
     pass
 
 
 class MappedTextInput(
         MappedTextInputMixin,
         django_widgets.TextInput):
-    """
-    """
     pass
 
 
 class MappedDateInput(
         MappedTextInputMixin,
         django_widgets.DateInput):
-    """
-    """
     pass
 
 
 class MappedNumberInput(
         MappedTextInputMixin,
         django_widgets.NumberInput):
-    """
-    """
+    pass
+
+
+class MappedCheckboxInput(
+        MappedCheckboxInputMixin,
+        django_widgets.CheckboxInput):
     pass
