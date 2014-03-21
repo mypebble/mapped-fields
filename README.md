@@ -86,6 +86,7 @@ inside test_project:
 virtualenv venv
 . venv/bin/activate
 pip install -r requirements.txt
+python setup.py install
 
 cd test_project
 ./manage.py test
