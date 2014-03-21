@@ -30,3 +30,13 @@ class IntegerField(MappedFieldMixin, forms.IntegerField):
     """
     """
     widget = mapped_widgets.MappedNumberInput
+
+    def __init__(self, *args, **kwargs):
+        default_override = (
+            self.widget == mapped_widgets.MappedNumberInput
+            and 'widget' not in kwargs)
+        if default_override:
+            kwargs['widget'] = self.widget
+
+        super(IntegerField, self).__init__(*args, **kwargs)
+

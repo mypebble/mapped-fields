@@ -63,22 +63,3 @@ class MappedFieldTestCase(TestCase):
 
         self.assertFalse(form.is_valid())
         self.assertTrue(form.errors['date_of_birth'])
-
-    def test_default(self):
-        """The default fields work as expected.
-        """
-        contact = {
-            'FirstName': 'First',
-            'Last Name': 'Last',
-            'DateOfBirth': '1990-1-11',
-            'T-Shirts': '100',  # T-Shirts is not a pre-set option
-        }
-
-        form = forms.ContactForm(data=contact)
-
-        self.assertTrue(form.is_valid())
-
-        self.assertEqual(form.cleaned_data['first_name'], 'First')
-        self.assertEqual(form.cleaned_data['last_name'], 'Last')
-        self.assertEqual(form.cleaned_data['date_of_birth'], date(1990, 1, 11))
-        self.assertEqual(form.cleaned_data['number_of_tshirts'], 0)
