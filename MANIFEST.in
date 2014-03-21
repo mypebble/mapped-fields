@@ -1,0 +1,7 @@
+include CHANGELOG
+include LICENSE
+include MANIFEST.in
+include README.md
+exclude circle.yml
+exclude requirements.txt
+recursive-exclude test_project *
