@@ -61,13 +61,53 @@ class MappedFieldTestCase(TestCase):
 
         form = forms.TestForm(data=contact)
 
-        field_errors = (
-            'is_staff',
-            'date_of_birth',
-        )
+        self.assertFalse(form.is_valid())
+
+        self.assertTrue('date_of_birth' in form.errors)
+
+
+class MappedBooleanFieldTestCase(TestCase):
+    """Tests specific to BooleanFields
+    """
+    def test_widget_inheritance(self):
+        """The correct Widget subclasses are used.
+        """
+        form = forms.BooleanTestForm()
+
+        self.assertTrue(isinstance(
+            form.fields['is_staff'].widget,
+            mapped_fields.widgets.MappedCheckboxInput))
+
+        self.assertTrue(isinstance(
+            form.fields['has_file'].widget,
+            mapped_fields.widgets.MappedCheckboxInput))
+
+    def test_true(self):
+        """BooleanFields work as expected for 'truthy' values.
+        """
+        contact = {
+            'staff_member': 'yes',
+            'documented': 'true',
+        }
+
+        form = forms.BooleanTestForm(data=contact)
+
+        self.assertTrue(form.is_valid())
+
+        self.assertEqual(form.cleaned_data['is_staff'], True)
+        self.assertEqual(form.cleaned_data['has_file'], True)
+
+    def test_false(self):
+        """BooleanFields work as expected for 'falsey' values.
+        """
+        contact = {
+            'staff_member': 'false',
+            'documented': '',
+        }
+
+        form = forms.BooleanTestForm(data=contact)
 
         self.assertFalse(form.is_valid())
 
-        for field in field_errors:
-            self.assertTrue(field in form.errors,
-                '{} not in errors list'.format(field))
+        self.assertTrue('is_staff' in form.errors)
+        self.assertEqual(form.cleaned_data['has_file'], False)

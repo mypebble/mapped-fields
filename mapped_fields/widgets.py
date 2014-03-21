@@ -1,3 +1,5 @@
+from django.utils import six
+
 from django.forms import widgets as django_widgets
 
 
@@ -25,7 +27,23 @@ class MappedTextInputMixin(MappedWidgetMixinBase):
 
 
 class MappedCheckboxInputMixin(MappedWidgetMixinBase):
-    pass
+    """Mixin just for CheckboxInput widgets.
+    """
+    def value_from_datadict(self, data, files, name):
+        """
+        """
+        value = False
+        for field_name, data_value in data.iteritems():
+            if field_name in self.field_names:
+                value = data_value
+                break
+
+        # Translate true and false strings to boolean values (from Django).
+        values = {'true': True, 'false': False}
+        if isinstance(value, six.string_types):
+            value = values.get(value.lower(), value)
+
+        return bool(value)
 
 
 class MappedTextInput(

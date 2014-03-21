@@ -6,9 +6,6 @@ from mapped_fields import fields
 class TestForm(forms.Form):
     """A simple form that we can use to test a range of mapping.
     """
-    is_staff = fields.BooleanField(field_names=('staff_member', 'staff'))
-    has_file = fields.NullBooleanField(field_names=('documented', 'has_doc'))
-
     first_name = fields.CharField(
         max_length=50, field_names=('FirstName', 'First Name'))
     last_name = fields.CharField(
@@ -34,3 +31,10 @@ class TestForm(forms.Form):
 
     url = fields.URLField(field_names=('homepage',))
     """
+
+
+class BooleanTestForm(forms.Form):
+    """Test form just for boolean fields
+    """
+    is_staff = fields.BooleanField(field_names=('staff_member', 'staff'))
+    has_file = fields.NullBooleanField(field_names=('documented', 'has_doc'))
