@@ -87,6 +87,7 @@ class MappedFieldTestCase(TestCase):
 
         self.assertFalse(form.is_valid())
 
+        self.assertEqual(len(form.errors), 4)
         self.assertTrue('date_of_birth' in form.errors)
         self.assertTrue('last_contacted' in form.errors)
         self.assertTrue('height' in form.errors)
