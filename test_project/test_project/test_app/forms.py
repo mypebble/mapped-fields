@@ -16,6 +16,7 @@ class TestForm(forms.Form):
 
     date_of_birth = fields.DateField(field_names=('DOB', 'DateOfBirth'))
 
+    """
     last_contacted = fields.DateTimeField(
         field_names=('last_contact', 'last_call'))
 
@@ -30,3 +31,4 @@ class TestForm(forms.Form):
     slug = fields.SlugField(field_names=('reference',))
 
     url = fields.URLField(field_names=('homepage',))
+    """
