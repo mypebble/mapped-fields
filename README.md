@@ -17,17 +17,17 @@ field.
 ```python
 from django import forms
 
-from mapped_fields import forms as maps
+from mapped_fields import fields
 
 
 class ContactCsv(forms.Form):
     """Import a Contact from a CSV File.
     """
-    first_name = maps.Charfield(
+    first_name = fields.Charfield(
         max_length=50, field_names=('FirstName', 'Forename'))
-    last_name = maps.Charfield(
+    last_name = fields.Charfield(
         max_length=50, field_names=('LastName', 'Surname'))
-    phone_number = maps.CharField(
+    phone_number = fields.CharField(
         max_length=30, field_names=('Telephone', 'Mobile'))
 
 
@@ -61,19 +61,25 @@ Fields
 The Mapped Fields plugin works by extending existing django fields. The
 currently supported fields are:
 
-- `mapped_fields.forms.BooleanField`
-- `mapped_fields.forms.CharField`
-- `mapped_fields.forms.DateField`
-- `mapped_fields.forms.DateTimeField`
-- `mapped_fields.forms.DecimalField`
-- `mapped_fields.forms.EmailField`
-- `mapped_fields.forms.FloatField`
-- `mapped_fields.forms.IntegerField`
-- `mapped_fields.forms.SlugField`
-- `mapped_fields.forms.URLField`
+- `mapped_fields.fields.BooleanField`
+- `mapped_fields.fields.NullBooleanField`
+- `mapped_fields.fields.CharField`
+- `mapped_fields.fields.DateField`
+- `mapped_fields.fields.DateTimeField`
+- `mapped_fields.fields.DecimalField`
+- `mapped_fields.fields.FloatField`
+- `mapped_fields.fields.IntegerField`
+- `mapped_fields.fields.EmailField`
+- `mapped_fields.fields.SlugField`
+- `mapped_fields.fields.URLField`
 
 
-All fields work as in Django, but take a mandatory extra argument `field_names`
+All fields work as in Django, but take a mandatory extra argument `field_names` -- a list or tuple
+of field names to map from the source data into the field.
+
+You may encounter problems when using `mapped_fields.fields.NullBooleanField`. This is because
+Django uses a `NullBooleanSelect` widget for this field, whereas our version currently uses
+the `CheckboxInput` widget.
 
 
 Testing
