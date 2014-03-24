@@ -32,6 +32,10 @@ class MappedFieldTestCase(TestCase):
             mapped_fields.widgets.MappedTextInput))
 
         self.assertTrue(isinstance(
+            form.fields['url'].widget,
+            mapped_fields.widgets.MappedTextInput))
+
+        self.assertTrue(isinstance(
             form.fields['date_of_birth'].widget,
             mapped_fields.widgets.MappedDateInput))
 
