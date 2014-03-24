@@ -24,7 +24,7 @@ class MappedTextInputMixin(MappedWidgetMixinBase):
     Note that most Widgets extend TextInput, only special cases don't.
     """
     def value_from_datadict(self, data, files, name):
-        """An override to do the field mapping, if
+        """An override to do the field mapping
         """
         if name not in data:
             return self._get_mapped_field_value(data, name)
