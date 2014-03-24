@@ -1,8 +1,8 @@
 Django Mapped Fields
 ====================
 
-A set of form fields to make it easier to accept semi-structured data and map
-it directly to your own Django Models and Forms.
+A set of form fields to make it easier to accept structured data with values across multiple keys, then map
+such data directly to your own Django Models and Forms with normalised field names.
 
 A common use case would be to take CSV or JSON files from external systems and
 normalise them into your own data structures.
