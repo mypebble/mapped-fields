@@ -2,6 +2,12 @@ from django.utils import six
 
 from django.forms import widgets as django_widgets
 
+# Handle multiple Django Versions
+try:
+    NumberInput = django_widgets.NumberInput
+except AttributeError:
+    NumberInput = django_widgets.TextInput
+
 
 class MappedWidgetMixinBase(object):
     """
@@ -66,7 +72,7 @@ class MappedDateTimeInput(
 
 class MappedNumberInput(
         MappedTextInputMixin,
-        django_widgets.NumberInput):
+        NumberInput):
     pass
 
 
