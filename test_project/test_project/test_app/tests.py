@@ -32,6 +32,10 @@ class MappedFieldTestCase(TestCase):
             mapped_fields.widgets.MappedTextInput))
 
         self.assertTrue(isinstance(
+            form.fields['url'].widget,
+            mapped_fields.widgets.MappedTextInput))
+
+        self.assertTrue(isinstance(
             form.fields['date_of_birth'].widget,
             mapped_fields.widgets.MappedDateInput))
 
@@ -125,14 +129,14 @@ class MappedBooleanFieldTestCase(TestCase):
 
         self.assertTrue(isinstance(
             form.fields['has_file'].widget,
-            mapped_fields.widgets.MappedCheckboxInput))
+            mapped_fields.widgets.MappedNullBooleanSelect))
 
     def test_true(self):
         """BooleanFields work as expected for 'truthy' values.
         """
         contact = {
             'staff_member': 'yes',
-            'documented': 'true',
+            'documented': 'True',
         }
 
         form = forms.BooleanTestForm(data=contact)
@@ -147,7 +151,7 @@ class MappedBooleanFieldTestCase(TestCase):
         """
         contact = {
             'staff_member': 'false',
-            'documented': '',
+            'documented': 'False',
         }
 
         form = forms.BooleanTestForm(data=contact)
@@ -156,3 +160,18 @@ class MappedBooleanFieldTestCase(TestCase):
 
         self.assertTrue('is_staff' in form.errors)
         self.assertEqual(form.cleaned_data['has_file'], False)
+
+    def test_null(self):
+        """BooleanFields work as expected for empty values.
+        """
+        contact = {
+            'staff_member': '',
+            'documented': '',
+        }
+
+        form = forms.BooleanTestForm(data=contact)
+
+        self.assertFalse(form.is_valid())
+
+        self.assertTrue('is_staff' in form.errors)
+        self.assertEqual(form.cleaned_data['has_file'], None)

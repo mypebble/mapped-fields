@@ -1,82 +1,60 @@
-from django.utils import six
-
 from django.forms import widgets as django_widgets
 
-# Handle multiple Django Versions
-try:
-    NumberInput = django_widgets.NumberInput
-except AttributeError:
-    NumberInput = django_widgets.TextInput
 
-
-class MappedWidgetMixinBase(object):
-    """
-    Abstract base class only for mixins. Identifies subclassed widgets.
-    Defines logic common to all inheriting mixins.
-    """
-    def _get_mapped_field_value(self, data, name):
-        """
-        Traverses the given data looking for a key match in self.field_names.
-        If there's a match, return the value.
-        """
-        for field_name, value in data.iteritems():
-            if field_name in self.field_names:
-                return value
-
-
-class MappedTextInputMixin(MappedWidgetMixinBase):
-    """
-    Mixin to extend TextInput subclasses with field mapping logic.
-    Note that most Widgets extend TextInput, only special cases don't.
+class MappedWidgetMixin(object):
+    """Mixin to override how each widget obtains its value from a datadict.
     """
     def value_from_datadict(self, data, files, name):
-        """An override to do the field mapping
+        """
+        An override to do the field mapping, before calling
+        value_from_datadict on super.
         """
         if name not in data:
-            return self._get_mapped_field_value(data, name)
+            mapped_data = self._get_mapped_field_data(data, name)
+            return super(MappedWidgetMixin, self).value_from_datadict(
+                mapped_data, files, name)
 
-
-class MappedCheckboxInputMixin(MappedWidgetMixinBase):
-    """Mixin just for CheckboxInput widgets.
-    """
-    def value_from_datadict(self, data, files, name):
+    def _get_mapped_field_data(self, data, name):
         """
+        Modify the data dict to only contain values with matching keys.
+        Can then be passed to value_from_datadict cleanly.
         """
-        value = self._get_mapped_field_value(data, name)
-
-        # Translate true and false strings to boolean values (from Django).
-        values = {'true': True, 'false': False}
-        if isinstance(value, six.string_types):
-            value = values.get(value.lower(), value)
-
-        return bool(value)
+        mapped_data = {
+            name: v for k, v in data.viewitems() if k in self.field_names}
+        return mapped_data
 
 
 class MappedTextInput(
-        MappedTextInputMixin,
+        MappedWidgetMixin,
         django_widgets.TextInput):
     pass
 
 
 class MappedDateInput(
-        MappedTextInputMixin,
+        MappedWidgetMixin,
         django_widgets.DateInput):
     pass
 
 
 class MappedDateTimeInput(
-        MappedTextInputMixin,
+        MappedWidgetMixin,
         django_widgets.DateTimeInput):
     pass
 
 
 class MappedNumberInput(
-        MappedTextInputMixin,
-        NumberInput):
+        MappedWidgetMixin,
+        getattr(django_widgets, 'NumberInput', django_widgets.TextInput)):
     pass
 
 
 class MappedCheckboxInput(
-        MappedCheckboxInputMixin,
+        MappedWidgetMixin,
         django_widgets.CheckboxInput):
+    pass
+
+
+class MappedNullBooleanSelect(
+        MappedWidgetMixin,
+        django_widgets.NullBooleanSelect):
     pass

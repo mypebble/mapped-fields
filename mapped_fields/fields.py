@@ -16,7 +16,7 @@ class MappedFieldMixin(object):
         """
         default_override = (
             'widget' not in kwargs and
-            issubclass(self.widget, mapped_widgets.MappedWidgetMixinBase))
+            issubclass(self.widget, mapped_widgets.MappedWidgetMixin))
 
         if default_override:
             kwargs['widget'] = self.widget
@@ -34,7 +34,7 @@ class BooleanField(MappedFieldMixin, forms.BooleanField):
 class NullBooleanField(MappedFieldMixin, forms.NullBooleanField):
     """
     """
-    widget = mapped_widgets.MappedCheckboxInput
+    widget = mapped_widgets.MappedNullBooleanSelect
 
 
 class CharField(MappedFieldMixin, forms.CharField):
