@@ -44,7 +44,7 @@ class MappedDateTimeInput(
 
 class MappedNumberInput(
         MappedWidgetMixin,
-        getattr(django_widgets, 'NumberInput', 'TextInput')):
+        getattr(django_widgets, 'NumberInput', django_widgets.TextInput)):
     pass
 
 
