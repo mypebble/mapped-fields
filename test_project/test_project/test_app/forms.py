@@ -34,3 +34,10 @@ class BooleanTestForm(forms.Form):
     """
     is_staff = fields.BooleanField(field_names=('staff_member', 'staff'))
     has_file = fields.NullBooleanField(field_names=('documented', 'has_doc'))
+
+
+class DuplicateTestForm(forms.Form):
+    """This form is to test the priority of field_names settings.
+    """
+    order_field = fields.CharField(
+        max_length=10, field_names=('p1', 'p2', 'p3'))
