@@ -2,6 +2,11 @@ from datetime import date, datetime
 from decimal import Decimal
 from unittest import TestCase
 
+try:
+    from collections import OrderedDict
+except ImportError: #Older version of Python
+    OrderedDict = dict
+
 import mapped_fields
 
 from test_project.test_app import forms
@@ -175,3 +180,18 @@ class MappedBooleanFieldTestCase(TestCase):
 
         self.assertTrue('is_staff' in form.errors)
         self.assertEqual(form.cleaned_data['has_file'], None)
+
+
+class MappedDuplicateTestCase(TestCase):
+    """Send in a data file that uses multiple field names. We'll use an ordered
+    dict to force the field names to be seen in reverse order.
+    """
+    def test_form(self):
+        data = OrderedDict(
+            (('p2', 'No Show'), ('p1', 'Show'), ('p3', 'No Show'))
+        )
+
+        form = forms.DuplicateTestForm(data=data)
+
+        self.assertTrue(form.is_valid())
+        self.assertEqual(form.cleaned_data['order_field'], 'Show')

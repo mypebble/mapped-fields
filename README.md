@@ -53,6 +53,38 @@ def map_from_csv():
     invalid_form.is_valid() == False # Legal Surname is not in the mapped fields
 ```
 
+Handling Multiple field_names in a single file
+----------------------------------------------
+
+If you have multiple different fields in the same file mapping to a single
+output, the first match on field_names will be used:
+
+```python
+from mapped_fields import fields
+
+
+class ContactForm(forms.Form):
+    """Demonstrate multiple field_names.
+    """
+    name = fields.CharField(
+        max_length=100, field_names=('Name', 'ContactName'))
+
+
+def map_from_dict():
+    data = {
+        'ContactName': 'James',
+        'Name': 'Anderson',
+    }
+
+    form = ContactForm(data=data)
+    form.is_valid() == True
+    form.cleaned_data['name'] == 'Name' # Name was listed first in field_names
+```
+
+This is potentially useful if you are importing file formats that are
+inconsistent, and where you want a fallback if the "best" header isn't
+there.
+
 
 Fields
 ------
