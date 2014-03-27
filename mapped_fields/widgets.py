@@ -19,7 +19,7 @@ class MappedWidgetMixin(object):
         Modify the data dict to only contain values with matching keys.
         Can then be passed to value_from_datadict cleanly.
         """
-        mapped_data = {name: None}
+        mapped_data = {}
         for field_name in self.field_names:
             if field_name in data:
                 mapped_data[name] = data[field_name]
