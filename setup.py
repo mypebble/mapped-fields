@@ -6,7 +6,7 @@ _description = (
 
 setup(
     name='django-mapped-fields',
-    version='0.0.3',
+    version='0.0.4',
     description=_description,
     author="SF Software limited t/a Pebble",
     author_email="sysadmin@talktopebble.co.uk",
