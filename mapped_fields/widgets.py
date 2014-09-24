@@ -13,6 +13,9 @@ class MappedWidgetMixin(object):
             mapped_data = self._get_mapped_field_data(data, name)
             return super(MappedWidgetMixin, self).value_from_datadict(
                 mapped_data, files, name)
+        # Resume the default behaviour
+        return super(MappedWidgetMixin, self).value_from_datadict(
+            data, files, name)
 
     def _get_mapped_field_data(self, data, name):
         """
