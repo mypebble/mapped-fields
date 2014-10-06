@@ -1,3 +1,6 @@
 test:
     override:
         - cd test_project && ./manage.py test
+notify:
+    webhooks:
+        - url: https://webhooks.gitter.im/e/d7b47faf7d43f147ab2e
