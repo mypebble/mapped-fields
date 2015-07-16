@@ -1,7 +1,6 @@
 Django Mapped Fields
 ====================
 [![Gitter](https://badges.gitter.im/Join Chat.svg)](https://gitter.im/mypebble/mapped-fields?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
-
 [![Circle CI](https://circleci.com/gh/mypebble/mapped-fields.svg?style=svg)](https://circleci.com/gh/mypebble/mapped-fields)
 
 A set of form fields to make it easier to accept semi-structured data with variable (but expected) keys. This data can now be mapped directly to your own Django Models and Forms with normalised field names.
